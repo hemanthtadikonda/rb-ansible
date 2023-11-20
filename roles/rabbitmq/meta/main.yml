@@ -1,0 +1,2 @@
+- name: set hostname to server
+  ansible.builtin.shell: set-host rabbitmq
