@@ -1,0 +1,4 @@
+-  name: roboshop catalogue config
+   hosts: all
+   become: true
+   tasks:
