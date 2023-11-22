@@ -20,13 +20,13 @@
       dest: /etc/yum.repos.d/mongo.repo
    when: schema is defined
 
--  name: Install Nodejs
+-  name: Install Mongo client
    ansible.builtin.yum:
       name: mongodb-org-shell
       state: installed
    when: schema is defined
 
--  name: config of nodejs repo
+-  name: schema load
    ansible.builtin.shell: mongo --host mongodb-dev.tadikonda.online </app/schema/{{ component }}.js
    when: schema is defined
 
