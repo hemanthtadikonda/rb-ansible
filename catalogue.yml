@@ -1,7 +1,0 @@
--  name: roboshop catalogue config
-   hosts: all
-   become: true
-   tasks:
-      -  name: Nodejs Configuration for catalogue
-         ansible.builtin.import_tasks: nodejs.yml
-

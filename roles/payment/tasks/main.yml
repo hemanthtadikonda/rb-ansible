@@ -1,0 +1,22 @@
+-  name: Install packages
+   ansible.builtin.yum:
+      name:
+         - python36
+         - gcc
+         - python3-devel
+      state: present
+
+-  name: Import app-preq role
+   ansible.builtin.import_role:
+      name: common
+      tasks_from: app-preq.yml
+
+-  name: Install python dependencies
+   ansible.builtin.shell: pip3.6 install -r requirements.txt
+   args:
+      chdir: /app
+
+-  name: Import a service role
+   ansible.builtin.import_role:
+      name: common
+      tasks_from: service.yml

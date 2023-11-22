@@ -1,0 +1,28 @@
+-  name: install maven to code compile
+   ansible.builtin.yum:
+      name: maven
+      state: installed
+
+-  name: Import app-preq role
+   ansible.builtin.import_role:
+      name: common
+      tasks_from: app-preq.yml
+
+
+-  name: Install maven dependencies  ( code compile )
+   ansible.builtin.shell: mvn clean package ; mv target/{{ component }}-1.0.jar {{ component }}.jar
+   args:
+      chdir: /app
+
+-  name: Install mysql client server
+   ansible.builtin.yum:
+      name: mysql
+      state: installed
+
+-  name: mongo schema load
+   ansible.builtin.shell: mysql -h sql.tadikonda.online -uroot -pRoboShop@1 < /app/schema/{{ component }}.sql
+
+-  name: Import a service role
+   ansible.builtin.import_role:
+      name: common
+      tasks_from: service.yml
