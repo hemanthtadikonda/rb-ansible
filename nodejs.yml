@@ -1,0 +1,35 @@
+-  name: config of nodejs repo
+   ansible.builtin.shell: yum module disable nodejs -y ; yum module enable nodejs:18 -y
+
+-  name: Install Nodejs
+   ansible.builtin.yum:
+      name: nodejs
+      state: installed
+
+-  name: configuration of app pre-req
+   ansible.builtin.import_tasks: app-preq.yml
+
+-  name: Install nodejs dependencies  ( code compile )
+   ansible.builtin.shell: npm install
+   args:
+      chdir: /app
+
+-  name: Add Mongo repo file
+   ansible.builtin.copy:
+      src: mongo.repo
+      dest: /etc/yum.repos.d/mongo.repo
+   when: schema is defined
+
+-  name: Install Nodejs
+   ansible.builtin.yum:
+      name: mongodb-org-shell
+      state: installed
+   when: schema is defined
+
+-  name: config of nodejs repo
+   ansible.builtin.shell: mongo --host mongodb-dev.tadikonda.online </app/schema/{{ component }}.js
+   when: schema is defined
+
+-  name: systemd setup
+   ansible.builtin.import_tasks: service.yml
+

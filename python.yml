@@ -1,0 +1,22 @@
+-  name: Configuration of Python
+   hosts: all
+   become: true
+   tasks:
+      -  name: Install packages
+         ansible.builtin.yum:
+            name:
+               - python36
+               - gcc
+               - python3-devel
+            state: present
+
+      -  name: configuration app pre-reqosites
+         ansible.builtin.import_tasks: app-preq.yml
+
+      -  name: Install python dependencies
+         ansible.builtin.shell: pip3.6 install -r requirements.txt
+         args:
+            chdir: /app
+
+      -  name: start service
+         ansible.builtin.import_tasks: service.yml
