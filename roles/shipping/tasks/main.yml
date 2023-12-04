@@ -20,7 +20,7 @@
       state: installed
 
 -  name: mongo schema load
-   ansible.builtin.shell: mysql -h mysql-dev.tadikonda.online -uroot -pRoboShop@1 < /app/schema/{{ component }}.sql
+   ansible.builtin.shell: mysql -h {{ lookup('amazon.aws.aws_ssm', '{{env}}.shipping.DB_HOST', region='us-east-1' ) }} -u{{ lookup('amazon.aws.aws_ssm', '{{env}}.rds.username', region='us-east-1' ) }} -p{{ lookup('amazon.aws.aws_ssm', '{{env}}.rds.master_password', region='us-east-1' ) }} < /app/schema/{{ component }}.sql
 
 -  name: Import a service role
    ansible.builtin.import_role:

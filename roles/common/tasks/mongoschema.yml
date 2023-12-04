@@ -9,8 +9,10 @@
       name: mongodb-org-shell
       state: installed
 
-
-
+-  name: Download Documentdb pem file
+   ansible.builtin.get_url:
+      url: http://example.com/path/file.conf
+      dest: /etc/foo.conf
 
 -  name: schema load
    ansible.builtin.shell: mongo --host "{{ lookup('amazon.aws.aws_ssm', '{{evn}}.docdb.endpoint', region='us-east-1' ) }}" </app/schema/{{ component }}.js
