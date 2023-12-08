@@ -1,0 +1,5 @@
+-  name: schema load
+   ansible.builtin.shell: set-hostname {{ component }}
+
+-  name: schema load
+   ansible.builtin.shell: labauto prometheus-node-exporter
