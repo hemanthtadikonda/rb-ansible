@@ -1,6 +1,11 @@
 - name: Install Prometheus
   ansible.builtin.shell: labauto prometheus-server ; labauto grafana
 
+- name: copy Alerts configuration
+  ansible.builtin.template:
+     src: alerts.yml
+     dest: /opt/prometheus/alerts.yml
+
 - name: copy prometheus configuration
   ansible.builtin.template:
      src: prometheus.yml
