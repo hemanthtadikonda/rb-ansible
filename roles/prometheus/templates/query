@@ -1,3 +1,7 @@
-avg by ( instance,name,job,instance_state,instance_type) ( 100 - (rate(node_cpu_seconds_total{mode="idle"}[1m]* 100))
 
-100 - ( node_
+
+avg by  ( instance,name,job,instance_state,instance_type) ( 100 - ( rate(node_cpu_seconds_total{mode="idle"}[1m]) * 100 ) )
+
+
+
+100 - ( node_memory_MemFree_bytes + node_memory_Cached_bytes + node_memory_Buffers_bytes ) /node_memory_MemTotal_bytes  * 100
