@@ -22,4 +22,22 @@
       src: kibana-nginx
       dest: /etc/nginx/nginx.conf
 
+-  name: Restart service
+   ansible.builtin.systemd:
+      name: elasticsearch
+      state: restarted
+      enabled: yes
+
+-  name: Restart service
+   ansible.builtin.systemd:
+      name: kibana
+      state: restarted
+      enabled: yes
+
+-  name: Restart service
+   ansible.builtin.systemd:
+      name: nginx
+      state: restarted
+      enabled: yes
+
 
