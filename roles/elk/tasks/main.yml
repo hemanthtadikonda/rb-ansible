@@ -1,0 +1,25 @@
+-  name: set hostname
+   ansible.builtin.shell: set-hostname elk
+
+-  name: copy elk repo file
+   ansible.builtin.copy:
+      src: elk.repo
+      dest: /etc/yum.repos.d/elk.repo
+
+-  name: Install elastic search
+   ansible.builtin.shell: yum install elasticsearch -y > /opt/elk.log
+
+-  name: Install a list of packages (kibana,logstash,nginx)
+   ansible.builtin.yum:
+      name:
+         - kibana
+         - logstash
+         - nginx
+      state: present
+
+-  name: copy nginx reverse proxy file
+   ansible.builtin.copy:
+      src: kibana-nginx
+      dest: /etc/nginx/nginx.conf
+
+
