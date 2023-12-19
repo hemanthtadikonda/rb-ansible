@@ -3,7 +3,12 @@
      name: nginx
      state: installed
 
-- name: Copy file with owner and permissions
+- name: Copy Nginx project config file
+  ansible.builtin.copy:
+     src: nginx.conf
+     dest: /etc/nginx/nginx.conf
+
+- name: Copy Roboshop Reverse proxy config file
   ansible.builtin.template:
      src: roboshop-conf
      dest: /etc/nginx/default.d/roboshop.conf
