@@ -42,6 +42,6 @@
 
 -  name: Import_logstash config
    ansible.builtin.import_tasks: logstash.yml
-   when: elk_component == logstash
+   when: elk_component == "logstash"
 
 
