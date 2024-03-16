@@ -7,7 +7,7 @@
       dest: /etc/yum.repos.d/elk.repo
 
 -  name: Install elastic search
-   ansible.builtin.shell: yum install elasticsearch -y > /opt/elk.log
+   ansible.builtin.shell: yum install elasticsearch -y >> /opt/elk.log
 
 -  name: Install a list of packages (kibana,logstash,nginx)
    ansible.builtin.yum:
