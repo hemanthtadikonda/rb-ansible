@@ -9,6 +9,7 @@
 -  name: configuration of app pre-req
    ansible.builtin.import_tasks: app-preq.yml
 
+# for Nexus
 -  name: Install nodejs dependencies  ( code compile )
    ansible.builtin.shell: npm install
    args:

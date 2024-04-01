@@ -29,6 +29,12 @@
      dest: /usr/share/nginx/html
      remote_src: yes
 
+#- name: Download & extract App content from Nexus
+#  ansible.builtin.unarchive:
+#     src: https://roboshop-artifacts.s3.amazonaws.com/frontend.zip
+#     dest: /usr/share/nginx/html
+#     remote_src: yes
+
 - name: Restart nginx service
   ansible.builtin.systemd:
      name: nginx
