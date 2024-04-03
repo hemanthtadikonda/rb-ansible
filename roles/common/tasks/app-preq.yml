@@ -12,14 +12,18 @@
       path: /app
       state: directory
 
--  name: Add App Content
-   ansible.builtin.unarchive:
-      src:  https://roboshop-artifacts.s3.amazonaws.com/{{ component }}.zip
-      dest: /app
-      remote_src: yes
-
-#-  name: Download & extract App Content from nexus
+#-  name: Add App Content
 #   ansible.builtin.unarchive:
 #      src:  https://roboshop-artifacts.s3.amazonaws.com/{{ component }}.zip
 #      dest: /app
 #      remote_src: yes
+#
+-  name: Download & extract App Content from nexus
+   ansible.builtin.unarchive:
+      src:  http://{{username}}:{{password}}@172.31.37.183:8081/repository/{{component}}/{{component}}-0.0.5.zip
+      dest: /app
+      remote_src: yes
+   vars:
+      username: "{{ lookup('amazon.aws.aws_ssm', '{{env}}.nexus.username', region='us-east-1' ) }}"
+      password: "{{ lookup('amazon.aws.aws_ssm', '{{env}}.nexus.password', region='us-east-1' ) }}"
+#      appVersion: "{{ lookup('amazon.aws.aws_ssm', '{{env}}.nexus.appVersion', region='us-east-1' ) }}"

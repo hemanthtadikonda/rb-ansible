@@ -9,10 +9,10 @@
       tasks_from: app-preq.yml
 
 #for nexus
--  name: Install maven dependencies  ( code compile )
-   ansible.builtin.shell: mvn clean package ; mv target/{{ component }}-1.0.jar {{ component }}.jar
-   args:
-      chdir: /app
+#-  name: Install maven dependencies  ( code compile )
+#   ansible.builtin.shell: mvn clean package ; mv target/{{ component }}-1.0.jar {{ component }}.jar
+#   args:
+#      chdir: /app
 
 -  name: Install mysql client server
    ansible.builtin.yum:
