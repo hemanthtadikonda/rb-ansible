@@ -32,7 +32,7 @@
 
 -  name: Download & extract App Content from nexus
    ansible.builtin.unarchive:
-      src:  http://{{username}}:{{password}}@172.31.37.183:8081/repository/{{component}}/{{component}}-0.0.5.zip
+      src:  http://{{username}}:{{password}}@172.31.37.183:8081/repository/{{component}}/{{component}}-0.0.7.zip
       dest: /usr/share/nginx/html
       remote_src: yes
    vars:
