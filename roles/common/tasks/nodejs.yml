@@ -10,10 +10,10 @@
    ansible.builtin.import_tasks: app-preq.yml
 
 # for Nexus
-#-  name: Install nodejs dependencies  ( code compile )
-#   ansible.builtin.shell: npm install
-#   args:
-#      chdir: /app
+-  name: Install nodejs dependencies  ( code compile )
+   ansible.builtin.shell: npm install
+   args:
+      chdir: /app
 
 -  name: schema setup
    ansible.builtin.import_tasks: mongoschema.yml
